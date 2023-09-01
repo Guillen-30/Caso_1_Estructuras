@@ -15,4 +15,6 @@ Titular *listar();
 
 Titular *buscar(string keyWord );
 
-Titular mover(titular, int posicion);
+Titular void mover(titular, int posicion);
+
+Titular void eliminar(string keyWord)
