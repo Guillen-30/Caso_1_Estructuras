@@ -142,6 +142,31 @@ int getPast(T pDato) {
     return -1;  // Elemento no encontrado
 }
 
+// Método privado para obtener un nodo en una posición dada
+Nodo<T>* obtenerNodo(int pos) {
+    if (pos < 0 || pos >= length) {
+        return nullptr;  // Posición fuera de rango
+    }
+
+    Nodo<T>* current = head;
+    for (int i = 0; i < pos; i++) {
+        current = current->next;
+    }
+    return current;
+}
+
+// Obtener el dato de un nodo en una posición específica
+T getInfo(int pos) {
+    Nodo<T>* nodo = obtenerNodo(pos);
+    if (nodo != nullptr) {
+        return nodo->data;
+    } else {
+        // Manejar el caso de posición fuera de rango o nodo no encontrado según tus necesidades
+        throw std::out_of_range("Posición fuera de rango o nodo no encontrado");
+    }
+}
+
+
 // Mostrar un elemento
 void mostrar(T pDato) {
     Nodo<T>* current = head;

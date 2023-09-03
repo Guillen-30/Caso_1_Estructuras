@@ -36,15 +36,17 @@ template <class T>
             // Buscar titulares que contengan una palabra clave
             listaDEnlazada<T> buscar(string keyWord) {
                 listaDEnlazada<T> resultados;
-                for (Nodo<T> nodo: titulares) {
-                    T titular = nodo.data;
-                    if (titular.find(keyWord) != std::string::npos) {
+                Nodo<T>* current = titulares.begin(); // Obtener el puntero al primer nodo
+                while (current != nullptr) {
+                    T titular = current->data;
+                    if (titular.find(keyWord) != string::npos) {
                         resultados.insertar(titular);
                     }
+                    current = current->next;
                 }
                 return resultados;
-                
             }
+
 
 
 
@@ -80,12 +82,16 @@ template <class T>
 
             // Eliminar titulares que contengan una palabra clave
             void eliminarListado(string keyWord) {
-                for (string titular : titulares) {
-                    if (titular.find(keyWord)!= std::string::npos){
+                Nodo<T>* current = titulares.begin(); // Obtener el puntero al primer nodo
+                while (current != nullptr) {
+                    T titular = current->data;
+                    if (titular.find(keyWord) != string::npos) {
                         titulares.borrar(titular);
-                    };
-                };
-            };
+                    }
+                    current = current->next;
+                }
+                return;
+            }
         };
 
 #endif
