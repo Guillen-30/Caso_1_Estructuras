@@ -2,6 +2,7 @@
 #include "MetodosOperacion.h"
 
 #include <iostream>
+#include <string>
 
 int main() {
 
