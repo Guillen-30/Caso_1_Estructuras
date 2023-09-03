@@ -15,7 +15,7 @@ using namespace std;
 template <class T>
     class Titular {
         private:
-            listaDEnlazada<T> titulares; // Utilizamos la lista doblemente enlazada para almacenar los titulares
+            listaDEnlazada<T> titulares; // Se utiliza la lista doblemente enlazada para almacenar los titulares
 
         public:
             // Agregar un titular a la lista
@@ -37,13 +37,13 @@ template <class T>
             listaDEnlazada<T> buscar(string keyWord) {
                 listaDEnlazada<T> resultados;
                 for (T titular : titulares) {
-                    if (titular.find(keyWord) != string::npos) {
+                    if (titular.find(keyWord) != std::string::npos) {
                         resultados.insertar(titular);
                     }
                 }
-                if (!resultados.esVacia()) {
-                    return resultados;
-                }
+                return resultados;
+                
+            }
 
 
 
@@ -55,11 +55,11 @@ template <class T>
                     return;
                 }
 
-                Nodo<T>* current = titulares.head;
+                Nodo<T>* current = titulares.begin();
                 int currentIndex = 0;
 
                 while (current != nullptr) {
-                    if (current->data == T titular) {
+                    if (current->data == titular) {
                         // Se elimina el titular de su posición original
                         titulares.borrar( titular);
 

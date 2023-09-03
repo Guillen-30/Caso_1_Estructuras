@@ -8,7 +8,6 @@
 using namespace std;
 
 template <class T>
-
 // Definición de la estructura para los nodos de la lista
 struct Nodo {
     T data;
@@ -17,6 +16,7 @@ struct Nodo {
     Nodo(T value) : data(value), next(nullptr), prev(nullptr) {}
 };
 
+template <class T>
 class listaDEnlazada {
 private:
     Nodo<T>* head;  // Puntero al primer nodo
@@ -26,19 +26,19 @@ private:
 public:
     listaDEnlazada() : head(nullptr), tail(nullptr), length(0) {}
 
-    //Funcion begin y end para poder recorrer con un for
+    // Funcion begin y end para poder recorrer con un for
 
-    Nodo* begin(){
+    Nodo<T>* begin(){
         return head;
     }
 
-    Nodo* end(){
+    Nodo<T>* end(){
         return tail;
     }
 
     // Insertar un elemento en la lista
     void insertar(T pDato, int pos = -1) {
-        Nodo* newNode = new Nodo(pDato);
+        Nodo<T>* newNode = new Nodo(pDato);
         if (esVacia()) {
             head = newNode;
             tail = newNode;
@@ -56,7 +56,7 @@ public:
                 newNode->prev = tail;
                 tail = newNode;
             } else {
-                Nodo* current = head;
+                Nodo<T>* current = head;
                 for (int i = 0; i < pos - 1; i++) {
                     current = current->next;
                 }
@@ -85,7 +85,7 @@ public:
             return -1;  // La lista está vacía
         }
 
-        Nodo* current = head;
+        Nodo<T>* current = head;
         while (current != nullptr) {
             if (current->data == pDato) {
                 if (current == head) {
@@ -103,7 +103,7 @@ public:
                 T deletedData = current->data;
                 delete current;
                 length--;
-                return deletedData;
+                return 1;
             }
             current = current->next;
         }
@@ -112,7 +112,7 @@ public:
 
 // Obtener el siguiente elemento de la lista
 int getNext(T pDato) {
-    Nodo* current = head;
+    Nodo<T>* current = head;
     while (current != nullptr) {
         if (current->data == pDato) {
             if (current->next != nullptr) {
@@ -128,7 +128,7 @@ int getNext(T pDato) {
 
 // Obtener el elemento pasado de la lista
 int getPast(T pDato) {
-    Nodo* current = head;
+    Nodo<T>* current = head;
     while (current != nullptr) {
         if (current->data == pDato) {
             if (current->prev != nullptr) {
@@ -144,7 +144,7 @@ int getPast(T pDato) {
 
 // Mostrar un elemento
 void mostrar(T pDato) {
-    Nodo* current = head;
+    Nodo<T>* current = head;
     while (current != nullptr) {
         if (current->data == pDato) {
             cout << "Dato encontrado: " << current->data << endl;
