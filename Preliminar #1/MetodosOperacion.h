@@ -3,18 +3,88 @@ por lo tanto se ordenara antes de cualquier busqueda y para la busqueda solo se 
 titulares que contengan una o mas palabras de la lista ingresada por el usuario, ya con eso, se puede decidir 
 si eliminar la noticia o mostrarla, la fecha sera otro parametro del titular */
 
+#ifndef METODOS_OPERACION 
+#define METODOS_OPERACION 1
+
 #include "MetodosTAD.h"
+#include <iostream>
 #include <string>
 
+using namespace std;
 
-void agregar(titular);
+template <class T>
+    class Titular {
+        private:
+            listaDEnlazada<T> titulares; // Utilizamos la lista doblemente enlazada para almacenar los titulares
 
-void eliminar(titular);
+        public:
+            // Agregar un titular a la lista
+            void agregar(T titular) {
+                titulares.insertar(titular);
+            }
 
-Titular *listar();
+            // Eliminar un titular de la lista
+            void eliminar(T titular) {
+                titulares.borrar(titular);
+            }
 
-Titular *buscar(string keyWord );
+            // Listar todos los titulares
+            listaDEnlazada<T> listar() {
+                return titulares;
+            }
 
-Titular void mover(titular, int posicion);
+            // Buscar titulares que contengan una palabra clave
+            listaDEnlazada<T> buscar(string keyWord) {
+                listaDEnlazada<T> resultados;
+                for (T titular : titulares) {
+                    if (titular.find(keyWord) != string::npos) {
+                        resultados.insertar(titular);
+                    }
+                }
+                if (!resultados.esVacia()) {
+                    return resultados;
+                }
 
-Titular void eliminar(string keyWord)
+
+
+            // Mover un titular a una posición específica en la lista
+
+            void mover(T titular, int posicion) {
+                if (posicion < 0 || posicion >= titulares.getLong()) {
+                    cout << "Posición fuera de rango." << endl;
+                    return;
+                }
+
+                Nodo<T>* current = titulares.head;
+                int currentIndex = 0;
+
+                while (current != nullptr) {
+                    if (current->data == T titular) {
+                        // Se elimina el titular de su posición original
+                        titulares.borrar( titular);
+
+                        // Se inserta el titular en la nueva posición
+                        titulares.insertar( titular, posicion);
+
+                        cout << "Titular movido a la posición " << posicion << "." << endl;
+                        return;
+                    }
+                    current = current->next;
+                    currentIndex++;
+                }
+
+                cout << "Titular no encontrado en la lista." << endl;
+            }
+
+
+            // Eliminar titulares que contengan una palabra clave
+            void eliminarListado(string keyWord) {
+                for (string titular : titulares) {
+                    if (titular.find(keyWord)!= std::string::npos){
+                        titulares.borrar(titular);
+                    };
+                };
+            };
+        };
+
+#endif
