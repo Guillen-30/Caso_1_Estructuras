@@ -36,7 +36,8 @@ template <class T>
             // Buscar titulares que contengan una palabra clave
             listaDEnlazada<T> buscar(string keyWord) {
                 listaDEnlazada<T> resultados;
-                for (T titular : titulares) {
+                for (Nodo<T> nodo: titulares) {
+                    T titular = nodo.data;
                     if (titular.find(keyWord) != std::string::npos) {
                         resultados.insertar(titular);
                     }
