@@ -53,7 +53,7 @@ template <class T>
             // Mover un titular a una posición específica en la lista
 
             void mover(T titular, int posicion) {
-                if (posicion < 0 || posicion >= titulares.getLong()) {
+                if (posicion >= titulares.getLong()) {
                     cout << "Posición fuera de rango." << endl;
                     return;
                 }
@@ -67,7 +67,7 @@ template <class T>
                         titulares.borrar( titular);
 
                         // Se inserta el titular en la nueva posición
-                        titulares.insertar( titular, posicion);
+                        titulares.insertar( titular, currentIndex+posicion);
 
                         cout << "Titular movido a la posición " << posicion << "." << endl;
                         return;
