@@ -28,6 +28,10 @@ int main() {
         cout<< i+1 <<". " << dato <<endl;
     }
 
+    string titularMover;
+    int posicionMover;
+
+
     int opcion;
         do {
             cout << endl;
@@ -72,20 +76,18 @@ int main() {
                 case 4:{
                     cout << endl;
                     cout << "Subir o bajar un titular de relevancia" << endl;
-                    cout << "Ingrese el titular a mover: ";
-                    string titular;
-                    cin >> titular;
-                    cin.ignore();
-                    cout << "Ingrese el numero de posiciones a mover: ";
-                    int posicion;
-                    cin >> posicion;
-                    cin.ignore();
-                    miTitular.mover(titular, posicion);
-                    cin.ignore();
+                    // cout << "Ingrese el titular a mover: ";
+                    // cin.clear();
+                    // fflush(stdin);
+                    // cin >> titularMover;
+                    // cout << "Ingrese el numero de posiciones a mover: ";
+                    // cin >> posicionMover;
+                    cout << "Titular: X opens the floodgates on political ads\nPosicion: 3" << endl;
+                    miTitular.mover("X opens the floodgates on political ads", 3);
                     lista= miTitular.listar();
                     cout << endl;
                     cout << "Lista después de mover: " << endl;
-                        for (int i = 0 ; i < lista.getLong() ; i++){
+                    for (int i = 0 ; i < lista.getLong() ; i++){
                         string dato = lista.getInfo(i);
                         cout<< i+1 <<". " << dato <<endl;
                     }

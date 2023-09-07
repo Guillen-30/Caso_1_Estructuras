@@ -82,7 +82,7 @@ template <class T>
                         // Se inserta el titular en la nueva posición
                         titulares.insertar( titular, currentIndex+posicion);
 
-                        cout << "Titular movido " << posicion << "posiciones" << endl;
+                        cout << "Titular movido " << posicion << " posiciones" << endl;
                         return;
                     }
                     current = current->next;
