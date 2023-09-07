@@ -9,6 +9,8 @@ si eliminar la noticia o mostrarla, la fecha sera otro parametro del titular */
 #include "MetodosTAD.h"
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -34,21 +36,34 @@ template <class T>
             }
 
             // Buscar titulares que contengan una palabra clave
-            listaDEnlazada<T> buscar(string keyWord) {
+            listaDEnlazada<T> buscar() {
+                vector<string> keyWords;
                 listaDEnlazada<T> resultados;
-                Nodo<T>* current = titulares.begin(); // Obtener el puntero al primer nodo
-                while (current != nullptr) {
-                    T titular = current->data;
-                    if (titular.find(keyWord) != string::npos) {
-                        resultados.insertar(titular);
+                string keyWord;
+                cout << "Ingrese palabras o oraciones para buscar (ingrese -1 para salir):" << endl;
+                
+                while (true) {
+                    cin >> keyWord;
+                    if (keyWord == "-1") {
+                        break;
                     }
-                    current = current->next;
+                    keyWords.push_back(keyWord);
+                    }
+
+                for (int i=0;i<keyWords.size();i++){
+                    Nodo<T>* current = titulares.begin(); // Obtener el puntero al primer nodo
+                    
+                    while (current != nullptr) {
+                        T titular = current->data;
+                        string upp = std::transform(keyWords[i].begin(),keyWords[i].end(),::toupper)
+                        if (titular.find(upp) != string::npos) {
+                            resultados.insertar(titular);
+                        }
+                        current = current->next;
+                    }
                 }
                 return resultados;
             }
-
-
-
 
             // Mover un titular a una posición específica en la lista
 
@@ -69,7 +84,7 @@ template <class T>
                         // Se inserta el titular en la nueva posición
                         titulares.insertar( titular, currentIndex+posicion);
 
-                        cout << "Titular movido a la posición " << posicion << "." << endl;
+                        cout << "Titular movido " << posicion << "posiciones" << endl;
                         return;
                     }
                     current = current->next;
@@ -81,16 +96,35 @@ template <class T>
 
 
             // Eliminar titulares que contengan una palabra clave
-            void eliminarListado(string keyWord) {
-                Nodo<T>* current = titulares.begin(); // Obtener el puntero al primer nodo
-                while (current != nullptr) {
-                    T titular = current->data;
-                    if (titular.find(keyWord) != string::npos) {
-                        titulares.borrar(titular);
+            void eliminarListado() {
+                vector<string> keyWords;
+                listaDEnlazada<T> resultados;
+                string keyWord;
+                cout << "Ingrese palabras o oraciones para buscar (ingrese -1 para salir):" << endl;
+                
+                while (true) {
+                    cin >> keyWord;
+                    if (keyWord == "-1") {
+                        break;
                     }
-                    current = current->next;
+                    keyWords.push_back(keyWord);
+                    }
+
+                for (int i=0;i<keyWords.size();i++){
+                    Nodo<T>* current = titulares.begin(); // Obtener el puntero al primer nodo
+                    
+                    while (current != nullptr) {
+                        T titular = current->data;
+                        string upp = transform(keyWords[i].begin(),keyWords[i].end(),::toupper)
+                        if (titular.find(upp) != string::npos) {
+                            resultados.insertar(titular);
+                        }
+                        current = current->next;
+                    }
                 }
-                return;
+                for (int i=0;i<resultados.getLong();i++){
+                    eliminar(resultados.getInfo(i));
+                }
             }
         };
 

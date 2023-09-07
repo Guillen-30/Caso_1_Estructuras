@@ -54,7 +54,7 @@ int main() {
 
     //Prueba borrar dato especifico y luego imprimir para ver si se borro
 
-    miTitular.eliminar("Titular 3");
+    miTitular.eliminar("X opens the floodgates on political ads");
     lista = miTitular.listar();
 
     //Prueba imprimir longitud de la lista luego de borrar
@@ -67,9 +67,9 @@ int main() {
         cout<< i+1 <<". " << dato <<endl;
     }
     cout << endl;
-    cout << "Lista de elementos que contienen 'coup': " << endl;
+    cout << "Lista de elementos que contienen una palabra de la lista: " << endl;
     cout << endl;
-    listaDEnlazada<string> listaBusqueda = miTitular.buscar("coup");
+    listaDEnlazada<string> listaBusqueda = miTitular.buscar();
     for (int i = 0 ; i < listaBusqueda.getLong() ; i++){
         string dato = listaBusqueda.getInfo(i);
         cout<< i+1 <<". " << dato <<endl;
@@ -88,10 +88,9 @@ int main() {
         cout<< i+1 <<". " << dato <<endl;
     }
     cout << endl;
-    cout << "Lista luego de eliminar los titulares que contienen 'buscar': " << endl;
+    cout << "Lista luego de eliminar los titulares que contienen una palabra de la lista: " << endl;
 
-    listaBusqueda = miTitular.buscar("busca");
-    miTitular.eliminarListado("busca");
+    miTitular.eliminarListado();
 
     lista=miTitular.listar();
     cout << endl;
