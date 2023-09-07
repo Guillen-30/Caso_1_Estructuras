@@ -53,7 +53,7 @@ size_t write_callback(char *ptr, size_t size, size_t nmemb, void *userdata)
     size_t realsize = size * nmemb;
     get_request *req = (get_request *)userdata;
 
-    printf("receive chunk of %zu bytes\n", realsize);
+    //printf("receive chunk of %zu bytes\n", realsize);
 
     while (req->buflen < req->len + realsize + 1)
     {
@@ -133,12 +133,3 @@ public:
     };
 };
 
-// int main(void)
-// {
-//     Newsapi newsapi;
-
-//     vector<News *> allrecords = newsapi.getRecords();
-//     cout << allrecords.at(0)->getTitle() << endl;
-
-//     return 0;
-// }

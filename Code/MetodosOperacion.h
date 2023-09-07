@@ -10,7 +10,6 @@ si eliminar la noticia o mostrarla, la fecha sera otro parametro del titular */
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -40,7 +39,7 @@ template <class T>
                 vector<string> keyWords;
                 listaDEnlazada<T> resultados;
                 string keyWord;
-                cout << "Ingrese palabras o oraciones para buscar (ingrese -1 para salir):" << endl;
+                cout << "Ingrese palabras o oraciones para buscar (ingrese -1 para salir) (Entrada sensible a mayusculas):" << endl;
                 
                 while (true) {
                     cin >> keyWord;
@@ -55,8 +54,7 @@ template <class T>
                     
                     while (current != nullptr) {
                         T titular = current->data;
-                        string upp = std::transform(keyWords[i].begin(),keyWords[i].end(),::toupper)
-                        if (titular.find(upp) != string::npos) {
+                        if (titular.find(keyWords[i]) != string::npos) {
                             resultados.insertar(titular);
                         }
                         current = current->next;
@@ -100,7 +98,7 @@ template <class T>
                 vector<string> keyWords;
                 listaDEnlazada<T> resultados;
                 string keyWord;
-                cout << "Ingrese palabras o oraciones para buscar (ingrese -1 para salir):" << endl;
+                cout << "Ingrese palabras o oraciones para buscar (ingrese -1 para salir) (Entrada sensible a mayusculas):" << endl;
                 
                 while (true) {
                     cin >> keyWord;
@@ -115,8 +113,7 @@ template <class T>
                     
                     while (current != nullptr) {
                         T titular = current->data;
-                        string upp = transform(keyWords[i].begin(),keyWords[i].end(),::toupper)
-                        if (titular.find(upp) != string::npos) {
+                        if (titular.find(keyWords[i]) != string::npos) {
                             resultados.insertar(titular);
                         }
                         current = current->next;
